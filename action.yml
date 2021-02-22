@@ -1,18 +1,18 @@
 name: 'mongo-clone-action'
 description: 'Github action to trigger mongoDB database clones via mongodump & mongorestore'
 inputs:
-  connection-uri-source:
+  source:
     description: 'MongoDB connect url that includes username, password & database name you want to clone from'
     required: true
-  connection-uri-target:
+  target:
     description: 'MongoDB connect url that includes username, password & database name you want to clone to'
     required: true
 runs:
   using: "composite"
   steps:
-    - name: Install mongodb-tools
-      run: sudo apt install mongo-tools
-      shell: bash
     - name: Clone Database
-      run: ${{ github.action_path }}/clone.sh ${{ connection-uri-source }} ${{ connection-uri-target }}
+      run: ${{ github.action_path }}/clone.sh ${{ inputs.source }} ${{ inputs.target }}
       shell: bash
+branding:
+  icon: 'server'
+  color: 'gray-dark'

@@ -4,26 +4,27 @@ A simple github action to trigger mongoDB database clones via mongodump & mongor
 It will **overwrite** any existing target database with the source database.
 
 ## Example
-Trigger manually when needed with [workflow_trigger](https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/)
+Trigger manually when needed with [workflow_dispatch](https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/)
 
-*.github/workflows/clone-db.yaml*
+*.github/workflows/clone-db.yml*
 ```
-on: [workflow_trigger]
+name: MongoDB Clone
+on: [workflow_dispatch]
 jobs:
   mongo-clone-action:
     runs-on: ubuntu-latest
     name: Clone MongoDB
     steps:
-    - uses: Maggi64/mongo-clone-action@main
+    - uses: Maggi64/mongo-clone-action@0.1
       with:
-        connection-uri-source: mongodb+srv://<DB_USER>:<DB_PASSWORD>@<DB_HOST>/<SOURCE_DB_NAME>
-        connection-uri-target: mongodb+srv://<DB_USER>:<DB_PASSWORD>@<DB_HOST>/<TARGET_DB_NAME>
+        source: mongodb+srv://<DB_USER>:<DB_PASSWORD>@<DB_HOST>/<SOURCE_DB_NAME>
+        target: mongodb+srv://<DB_USER>:<DB_PASSWORD>@<DB_HOST>/<TARGET_DB_NAME>
 ```
 **It is highly recommended storing the database user and password via github secrets.**
 
 ``` 
-  connection-uri-source: ${{ secrets.DB_CONNECT_URI }}/<SOURCE_DB_NAME>
-  connection-uri-target: ${{ secrets.DB_CONNECT_URI }}/<TARGET_DB_NAME>
+  source: ${{ secrets.DB_CONNECT_URI }}/<SOURCE_DB_NAME>
+  target: ${{ secrets.DB_CONNECT_URI }}/<TARGET_DB_NAME>
 ```
 
 ## Adjust action trigger
