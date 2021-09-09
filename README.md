@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Clone MongoDB
     steps:
-    - uses: Maggi64/mongo-clone-action@0.1
+    - uses: Maggi64/mongo-clone-action@0.2
       with:
         source: mongodb+srv://<DB_USER>:<DB_PASSWORD>@<DB_HOST>/<SOURCE_DB_NAME>
         target: mongodb+srv://<DB_USER>:<DB_PASSWORD>@<DB_HOST>/<TARGET_DB_NAME>
