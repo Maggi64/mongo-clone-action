@@ -12,10 +12,10 @@ name: MongoDB Clone
 on: [workflow_dispatch]
 jobs:
   mongo-clone-action:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     name: Clone MongoDB
     steps:
-    - uses: Maggi64/mongo-clone-action@0.2
+    - uses: Maggi64/mongo-clone-action@0.3
       with:
         source: mongodb+srv://<DB_USER>:<DB_PASSWORD>@<DB_HOST>/<SOURCE_DB_NAME>
         target: mongodb+srv://<DB_USER>:<DB_PASSWORD>@<DB_HOST>/<TARGET_DB_NAME>
